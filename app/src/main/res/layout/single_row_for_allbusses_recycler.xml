@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="50dp"
+            android:background="#e3eeff"
+            android:padding="30dp"
+            android:weightSum="4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/single_row_bus_Name"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:text="Bus Name"
+                android:textColor="@color/Red"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/single_row_image"
+                android:layout_width="250dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="130dp"
+                android:importantForAutofill="auto"
+                android:layout_gravity="center"
+                android:foregroundGravity="center"
+                android:src="@drawable/ic_bus1" />
+
+
+            <TextView
+                android:id="@+id/single_row_BusStand_Name_Start"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_below="@+id/single_row_image"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="BusStand_Name_Start"
+                android:textColor="@color/Green"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/to"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_below="@+id/single_row_BusStand_Name_Start"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/single_row_image"
+                android:gravity="center"
+                android:text="To"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/Red"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/single_row_BusStand_Name_End"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/to"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:text="BusStand_Name_End"
+                android:textColor="@color/Green"
+                android:layout_toRightOf="@+id/single_row_image"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

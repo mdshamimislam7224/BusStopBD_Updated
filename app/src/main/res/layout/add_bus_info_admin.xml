@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/toolbar" />
+
+
+    <EditText
+        android:id="@+id/bus_Seat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please Enter Your Total Bus Seat Number "
+        android:gravity="center"
+        android:background="@color/White"
+        android:inputType="number"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        />
+
+
+    <EditText
+        android:id="@+id/bus_road_permit_license"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/White"
+        android:hint="Please Enter This Bus Road Permit License "
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        />
+
+
+<Button
+    android:id="@+id/all_buses_id_submit"
+    android:layout_width="wrap_content"
+    android:layout_height="30dp"
+    android:text="Submit Information"
+    android:textStyle="bold"
+    android:layout_marginTop="25dp"
+    android:textSize="25dp"
+    android:gravity="center"
+    android:textColor="@color/Green"
+    android:background="@drawable/backround_circle_button"
+    android:layout_gravity="center"/>
+
+
+
+
+</LinearLayout>
+</ScrollView>

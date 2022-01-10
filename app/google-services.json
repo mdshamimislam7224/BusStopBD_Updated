@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "773010979991",
+    "firebase_url": "https://busstopbd-29335-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "busstopbd-29335",
+    "storage_bucket": "busstopbd-29335.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:773010979991:android:f68973f6ad11280a63fdd2",
+        "android_client_info": {
+          "package_name": "com.shamim.newbusstop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "773010979991-ppmoclbngqjrn7qmcm700vhq396fqj7n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shamim.newbusstop",
+            "certificate_hash": "7bb010c7d0ccf95d279088a0b9ba01d681abfe8f"
+          }
+        },
+        {
+          "client_id": "773010979991-4f1rqtnvmohmnertpv2bcj3qmndtuhdp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHFSVNl7noYcsOjZO6RuyWkO8ZKJBnWmo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "773010979991-4f1rqtnvmohmnertpv2bcj3qmndtuhdp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

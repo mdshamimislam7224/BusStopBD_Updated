@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/flashing_background"
+    >
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <com.denzcoskun.imageslider.ImageSlider
+        android:id="@+id/image_slider"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@mipmap/ic_bus"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        app:iss_auto_cycle="true"
+        app:iss_delay="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+    </com.denzcoskun.imageslider.ImageSlider>
+
+
+
+    <Spinner
+        android:id="@+id/contactspinner"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:background="@drawable/backround_circle_button"
+        app:layout_constraintTop_toBottomOf="@+id/image_slider"
+        />
+    <Button
+        android:id="@+id/showdata_spinner_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="Click Here For Contact"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:background="@drawable/backround_circle_button"
+        app:layout_constraintTop_toBottomOf="@+id/contactspinner"
+        />
+
+
+
+
+    <ListView
+        android:id="@+id/businfoListView"
+        android:layout_width="390dp"
+        android:layout_height="229dp"
+        android:layout_marginTop="15dp"
+        android:foregroundGravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showdata_spinner_contact">
+
+    </ListView>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

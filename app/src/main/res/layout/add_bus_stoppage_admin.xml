@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/flashing_background"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/toolbar" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/bus_Image_from_admin"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:src="@drawable/add_information_bus_admin"
+        app:civ_border_color="#FF000000"
+        app:civ_border_width="2dp" />
+
+    <Button
+    android:id="@+id/choose_Image_bus_from_admin"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Choose the Image"
+    android:textStyle="bold"
+    android:layout_marginTop="25dp"
+    android:textSize="30dp"
+    android:gravity="center"
+    android:textColor="@color/Green"
+    android:background="@drawable/backround_circle_button"
+    android:layout_gravity="center"/>
+
+    <EditText
+        android:id="@+id/bus_Company_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please Enter Your Bus Company Name"
+        android:gravity="center"
+        android:background="@color/White"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        />
+
+    <EditText
+        android:id="@+id/bus_stoppage_Name_Start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please Enter Your Bus_Stoppage Name Start"
+        android:gravity="center"
+        android:background="@color/White"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        />
+    <EditText
+        android:id="@+id/bus_stoppage_Name_End"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please Enter Your Bus_Stoppage Name End"
+        android:gravity="center"
+        android:background="@color/White"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        />
+    <EditText
+        android:id="@+id/busTotal_Bus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please Enter Your Total Bus"
+        android:gravity="center"
+        android:background="@color/White"
+        android:inputType="number"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        />
+
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Please Add Your Bus Stop And Rent "
+        android:gravity="center"
+        android:textColor="@color/Red"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:textSize="30dp"
+        />
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/Add_fieldlayout_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
+
+    <Button
+        android:id="@+id/add_fied_information_Btn"
+        android:background="@drawable/backround_circle_button"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:text="Add Bus Stop"
+        android:layout_marginTop="10dp"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:drawableRight="@drawable/add_ic" />
+<Button
+    android:id="@+id/bus_stoppage_submit_Btn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Submit Stoppage"
+    android:textStyle="bold"
+    android:layout_marginTop="25dp"
+    android:textSize="30dp"
+    android:gravity="center"
+    android:textColor="@color/Green"
+    android:background="@drawable/backround_circle_button"
+    android:layout_gravity="center"/>
+
+
+
+
+</LinearLayout>
+</ScrollView>

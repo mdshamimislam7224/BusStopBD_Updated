@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.shamim.newbusstop.Home">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/login_backround_image"
+        android:orientation="vertical"
+        android:weightSum="6.4">
+
+        <ImageView
+            android:id="@+id/login_image"
+            android:layout_width="205dp"
+            android:layout_height="74dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:foregroundGravity="center"
+            android:src="@drawable/user"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+
+        <TextView
+            android:id="@+id/login_here"
+            android:layout_width="match_parent"
+            android:layout_height="18dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="0.6"
+            android:gravity="center_horizontal"
+            android:text="Login Here"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_image" />
+
+        <EditText
+            android:id="@+id/login_email"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="68dp"
+            android:layout_weight="0.6"
+            android:background="@drawable/search_bg_map"
+            android:drawableLeft="@drawable/email_ic"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Email..."
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/Black"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_here" />
+
+        <EditText
+            android:id="@+id/login_password"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="32dp"
+            android:layout_weight="0.6"
+            android:background="@drawable/search_bg_map"
+            android:drawableLeft="@drawable/ic_baseline_lock_24"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Password..."
+            android:inputType="textPassword"
+            android:textColorHint="@color/Black"
+            android:textSize="30dp"
+            app:layout_constraintTop_toBottomOf="@+id/login_email"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <Button
+            android:id="@+id/login_forgotten"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="44dp"
+            android:layout_weight="0.6"
+            android:background="@android:color/transparent"
+            android:text="Forgotten Password"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/login_password"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <Button
+            android:id="@+id/login_not_account_user"
+            android:layout_width="405dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:layout_weight="0.6"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:text="Don't have an Account ?"
+            android:textColor="@drawable/flashing_background"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@+id/login_forgotten"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="6dp" />
+
+        <Button
+            android:id="@+id/login_not_account_driver"
+            android:layout_width="405dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:layout_weight="0.6"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:text="Don't have an Account ?"
+            android:textColor="@drawable/flashing_background"
+            android:textSize="15sp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/login_forgotten"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="6dp" />
+
+        <Button
+            android:id="@+id/login_not_account_admin"
+            android:layout_width="405dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:layout_weight="0.6"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:text="Don't have an Account ?"
+            android:textColor="@drawable/flashing_background"
+            android:textSize="15sp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/login_forgotten"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="6dp" />
+
+        <Button
+            android:id="@+id/login_not_account_subadmin"
+            android:layout_width="405dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:layout_weight="0.6"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:text="Don't have an Account ?"
+            android:textColor="@drawable/flashing_background"
+            android:textSize="15sp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/login_forgotten"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="6dp" />
+
+        <Button
+            android:id="@+id/user_login"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="0.6"
+            android:background="@android:color/holo_red_dark"
+            android:text="Login"
+            android:textColor="@android:color/background_light"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/login_not_account_user"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <Button
+            android:id="@+id/driver_login"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="36dp"
+            android:layout_weight="0.6"
+            android:background="@android:color/holo_red_dark"
+            android:text="Login"
+            android:textColor="@android:color/background_light"
+            android:textSize="20sp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/login_not_account"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <Button
+            android:id="@+id/admin_login"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="36dp"
+            android:layout_weight="0.6"
+            android:background="@android:color/holo_red_dark"
+            android:text="Login"
+            android:textColor="@android:color/background_light"
+            android:textSize="20sp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/login_not_account"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <Button
+            android:id="@+id/subadmin_login"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="36dp"
+            android:layout_weight="0.6"
+            android:background="@android:color/holo_red_dark"
+            android:text="Login"
+            android:textColor="@android:color/background_light"
+            android:textSize="20sp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/login_not_account"
+            tools:layout_editor_absoluteX="0dp" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

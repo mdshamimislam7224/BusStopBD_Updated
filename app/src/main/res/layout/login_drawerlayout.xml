@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="1dp"
+    android:layout_height="match_parent"
+    tools:context="com.shamim.newbusstop.">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/city_bus_stop"
+        android:orientation="vertical"
+        android:weightSum="6">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:background="@drawable/backround_change_btn_txt"
+            android:gravity="center"
+            android:text="Choose Your Option"
+            android:textColor="@color/White"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <Button
+            android:id="@+id/customer_login_chooser"
+            android:layout_width="250dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:layout_weight="1"
+            android:background="@drawable/backround_change_btn_txt"
+            android:gravity="center"
+            android:onClick="user"
+            android:text="I am User"
+            android:textColor="@color/Red"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.44"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text" />
+
+        <Button
+            android:id="@+id/driver_login_chooser"
+            android:layout_width="250dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="36dp"
+            android:layout_weight="1"
+            android:background="@drawable/backround_change_btn_txt"
+            android:gravity="center"
+            android:onClick="driver"
+            android:text="I am a Driver"
+            android:textColor="@color/White"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.44"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/customer_login_chooser" />
+
+        <Button
+            android:id="@+id/admin_login_chooser"
+            android:layout_width="250dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="36dp"
+            android:layout_weight="1"
+            android:background="@drawable/backround_change_btn_txt"
+            android:gravity="center"
+            android:onClick="admin"
+            android:text=" Admin"
+            android:textColor="@color/Gray"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.44"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/driver_login_chooser" />
+
+        <Button
+            android:id="@+id/subadmin_login_chooser"
+            android:layout_width="250dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="36dp"
+            android:layout_weight="1"
+            android:background="@drawable/backround_change_btn_txt"
+            android:gravity="center"
+            android:onClick="admin"
+            android:text="SUB Admin"
+            android:textColor="@color/TEAL"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.44"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/admin_login_chooser" />
+
+        <Button
+            android:id="@+id/backToHome_chooser"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="36dp"
+            android:layout_weight="1"
+            android:background="@drawable/backround_circle_button"
+            android:gravity="center"
+            android:onClick="Back_Home"
+            android:text="Cancel"
+            android:textColor="@color/White"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.44"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/admin_login_chooser" />
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

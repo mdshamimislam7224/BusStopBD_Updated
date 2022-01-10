@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/test22"
+    android:background="@drawable/flashing_background"
+    android:orientation="vertical">
+
+
+
+    <include layout="@layout/toolbar"/>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="15dp"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/customer_profile_image"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center"
+            android:paddingTop="20dp"
+            android:src="@drawable/user"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FF000000"/>
+        <TextView
+            android:id="@+id/customer_profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Md Shamim Islam"
+           android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textColor="@color/Red"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/Red"
+            android:padding="15dp"
+            android:paddingLeft="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_baseline_person_24"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="FullName:"
+                android:textColor="@color/Black"
+                android:textSize="18dp"
+                android:layout_marginLeft="5dp"/>
+            <EditText
+                android:id="@+id/customer_profile_name_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Shamim"
+                android:background="@drawable/field_bg"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                android:textColor="@color/Red"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:id="@+id/customer_profile_name_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Shamim"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:background="@drawable/flashing_background"
+                android:textColor="@color/Gray"
+                android:layout_marginLeft="10dp"/>
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/Gray"
+            android:padding="15dp"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/email_ic"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Email:"
+                android:textColor="@color/Black"
+                android:textSize="18dp"
+                android:layout_marginLeft="5dp"/>
+            <EditText
+                android:id="@+id/customer_profile_email_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Shamim@"
+                android:background="@drawable/field_bg"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                android:textColor="@color/Red"
+                android:layout_marginLeft="45dp"/>
+
+            <TextView
+                android:id="@+id/customer_profile_email_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Shamim@"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:background="@drawable/flashing_background"
+                android:textColor="@color/Gray"
+                android:layout_marginLeft="45dp"/>
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/Gray"
+            android:padding="15dp"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/phone_ic"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Phone:"
+                android:textColor="@color/Black"
+                android:textSize="18dp"
+                android:layout_marginLeft="5dp"/>
+            <EditText
+                android:id="@+id/customer_profile_phone_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Shamim"
+                android:background="@drawable/field_bg"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                android:textColor="@color/Red"
+                android:layout_marginLeft="40dp"/>
+
+            <TextView
+                android:id="@+id/customer_profile_phone_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Shamim"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:background="@drawable/flashing_background"
+                android:textColor="@color/Gray"
+                android:layout_marginLeft="40dp"/>
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/Gray"
+            android:padding="15dp"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="90dp"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/customer_edit_profile_btn"
+                android:layout_width="180dp"
+                android:layout_height="50dp"
+                android:background="@drawable/backround_circle_button"
+                android:text="Edit Profile"
+                android:gravity="center"
+                android:textColor="@color/Red"
+                android:textSize="18dp"
+                android:drawableLeft="@drawable/ic_edit"
+                android:layout_gravity="center"
+                android:paddingLeft="10dp"
+                android:layout_marginLeft="10dp"
+
+                />
+            <Button
+                android:id="@+id/customer_update_profile_btn"
+                android:layout_width="180dp"
+                android:layout_height="50dp"
+                android:background="@drawable/backround_circle_button"
+                android:text="Update Profile"
+                android:gravity="center"
+                android:visibility="gone"
+                android:textColor="@color/Red"
+                android:textSize="18dp"
+                android:layout_gravity="center"
+                android:paddingLeft="10dp"
+                android:layout_marginLeft="10dp"
+
+                />
+
+            <Button
+                android:id="@+id/customer_change_password_btn"
+                android:layout_width="240dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/backround_circle_button"
+                android:text="Change the Password"
+                android:gravity="center"
+                android:textColor="@color/Red"
+                android:textSize="18dp"
+                android:drawableLeft="@drawable/ic_baseline_lock_24"
+                android:layout_gravity="center"
+                android:paddingLeft="10dp"
+                android:layout_marginLeft="10dp"
+
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>
+
+</LinearLayout>

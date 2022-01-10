@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/test2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.shamim.newbusstop.Home">
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context="com.shamim.newbusstop.Home"
+        tools:openDrawer="start">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/flashing_background"
+                android:elevation="4dp"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+            <LinearLayout
+                android:id="@+id/spinnerLinearLayout_with_button"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_below="@id/toolbar"
+                android:background="@drawable/backround_change_btn_txt"
+                android:weightSum="4"
+
+                >
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="0.2" />
+
+                <Spinner
+                    android:id="@+id/spinner_Nearby_Place"
+                    android:layout_width="0dp"
+                    android:layout_height="65dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4.5dp"
+                    android:layout_weight="3"
+                    android:background="@android:drawable/editbox_background"
+                    android:textColor="@android:color/black" />
+
+                <Button
+                    android:id="@+id/bt_Find_NearBy_Place"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/backround_change_btn_txt"
+                    android:text="Find"
+                    android:textColor="@color/White"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/fragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/spinnerLinearLayout_with_button"
+                android:background="@color/White"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:id="@+id/fragment_Container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinnerLinearLayout_with_button">
+
+                <fragment
+                    android:id="@+id/autocomplete_fragment"
+                    android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/Blue" />
+            </androidx.cardview.widget.CardView>
+
+            <fragment
+
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/search"
+                tools:context=".Home">
+
+            </fragment>
+
+
+        </RelativeLayout>
+
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/drawerlayout_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar"
+            android:layout_gravity="start"
+            android:layout_marginTop="50dp"
+            android:background="@color/TEAL"
+            app:itemIconSize="30dp"
+            app:itemIconTint="@color/White"
+            app:itemTextColor="@color/White"
+            app:menu="@menu/drawer_layout_home" />
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+</RelativeLayout>

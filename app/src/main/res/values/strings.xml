@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">BusStopBD</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="preference_file_key">busbd_file</string>
+
+
+    <string-array name="Bus_Name">
+        <item>Select The Option</item>
+        <item>Rida</item>
+        <item>Anabil</item>
+        <item>Salsabil</item>
+        <item>Akash</item>
+        <item>Ayat</item>
+        <item>Rajdhani</item>
+        <item>Turag</item>
+        <item>Boishakhi</item>
+        <item>Himachol</item>
+        <item>Dhaka Chaka</item>
+
+    </string-array>
+
+    <string name="title_activity_customer__maps">Map</string>
+    <string name="title_activity_customer__maps_">Map</string>
+    <string name="title_activity_driver_maps_">Map</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Registration">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="8"
+        android:orientation="vertical">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:background="@drawable/field_bg">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:gravity="center"
+                android:text="Your Profile Information"
+                android:textColor="@color/Red"
+                android:textSize="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/profile_fullname"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/search_bg_map"
+                android:ems="10"
+                android:gravity="center"
+                android:textColorHint="@color/Black"
+                android:textSize="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+
+            <TextView
+                android:id="@+id/profile_email"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/search_bg_map"
+                android:ems="10"
+                android:gravity="center"
+                android:textColor="@color/Black"
+                android:textColorHint="@color/Black"
+                android:textSize="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_fullname" />
+
+            <TextView
+                android:id="@+id/profile_phone"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="44dp"
+                android:background="@drawable/search_bg_map"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="phone"
+                android:textColor="@color/Black"
+                android:textColorHint="@color/Black"
+                android:textSize="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_email" />
+
+            <TextView
+                android:id="@+id/profile_license"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="44dp"
+                android:background="@drawable/search_bg_map"
+                android:ems="10"
+                android:gravity="center"
+                android:textColor="@color/Black"
+                android:textColorHint="@color/Black"
+                android:textSize="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_phone" />
+
+            <TextView
+                android:id="@+id/profile_nid"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="44dp"
+                android:background="@drawable/search_bg_map"
+                android:ems="10"
+                android:gravity="center"
+                android:textColor="@color/Black"
+                android:textColorHint="@color/Black"
+                android:textSize="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_license" />
+
+            <TextView
+                android:id="@+id/profile_company"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="44dp"
+                android:background="@drawable/search_bg_map"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="textPersonName"
+                android:textColor="@color/Black"
+                android:textColorHint="@color/Black"
+                android:textSize="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_nid" />
+
+            <Button
+                android:id="@+id/profile_edit"
+                android:layout_width="172dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/search_bg_map"
+                android:text="Edit Profile"
+                android:textColor="@color/TEAL"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_company" />
+
+            <Button
+                android:id="@+id/profile_change_password"
+                android:layout_width="172dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/search_bg_map"
+                android:text="Change Password"
+                android:textColor="@color/Red"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/profile_edit"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_company" />
+
+
+            <Button
+                android:id="@+id/profile_back"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="180dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/search_bg_map"
+                android:text="Back to home"
+                android:textColor="@color/Green"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_company"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/profile_image"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_marginTop="10dp"
+                android:foregroundGravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:srcCompat="@drawable/ic_profile"
+                tools:ignore="VectorDrawableCompat" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+</ScrollView>

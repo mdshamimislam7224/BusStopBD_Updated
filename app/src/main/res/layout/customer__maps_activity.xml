@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.shamim.newbusstop.Customer_MapsActivity">
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout_customer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start"
+        tools:context="com.shamim.newbusstop.Customer_MapsActivity">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/customer_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@color/colorPrimary"
+                android:elevation="4dp"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                />
+
+            <androidx.cardview.widget.CardView
+                android:layout_below="@+id/customer_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/search">
+
+                <fragment android:id="@+id/autocomplete_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                    />
+            </androidx.cardview.widget.CardView>
+
+            <fragment
+                android:layout_marginTop="60dp"
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".Home"
+
+                >
+
+            </fragment>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/driverInfo"
+                android:layout_gravity="bottom"
+                android:visibility="gone"
+                android:layout_above="@id/radio_and_button"
+                android:orientation="horizontal"
+                android:background="@color/quantum_vanillagreen300"
+                >
+                <ImageView
+                    android:layout_width="100sp"
+                    android:layout_height="100sp"
+                    android:id="@+id/driverProfileImage"
+                    android:src="@mipmap/ic_default_user"
+                    android:padding="20sp"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="40sp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/driverName"
+                        android:paddingBottom="10sp"
+                        android:paddingTop="20sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/driverPhone"
+                        android:paddingBottom="10sp"
+                        android:paddingTop="20sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/driverBus"
+                        android:paddingBottom="10sp"
+                        android:paddingTop="20sp"/>
+
+                    <RatingBar
+                        android:id="@+id/ratingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_vertical"
+                        android:numStars="5"
+                        android:stepSize="0.1" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/radio_and_button"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical"
+                android:background="@color/White">
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioGroup"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Setting Service"
+                        android:textColor="@color/Yellow"
+                        android:id="@+id/Setting_Service_customer"
+                        android:checked="true"
+                        />
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Medium Service"
+                        android:textColor="@color/Green"
+                        android:id="@+id/medium_Service_customer"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Local "
+                        android:textColor="@color/Drakblue"
+                        android:id="@+id/local_Service_customer"/>
+                </RadioGroup>
+
+                <Button
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/Red"
+                    android:textStyle="bold"
+                    android:text="Request for The Bus"
+                    android:background="@drawable/search_bg_map"
+                    android:id="@+id/mRequest"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/drawerlayout_view_customer"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:headerLayout="@layout/drawerlayout_head"
+            app:menu="@menu/drawer_layout_customer"/>
+    </androidx.drawerlayout.widget.DrawerLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/test33"/>
+</RelativeLayout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+
+    <group android:checkableBehavior="single">
+        <item
+
+            android:id="@+id/home_alluser"
+            android:icon="@drawable/ic_home"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/allbus"
+            android:icon="@drawable/ic_allbus"
+            android:title="Show All Bus" />
+        <item
+            android:id="@+id/setting"
+            android:icon="@drawable/ic_setting"
+            android:title="Setting" />
+
+        <item android:title="service">
+            <menu>
+
+                <item
+                    android:id="@+id/login"
+                    android:icon="@drawable/ic_login"
+                    android:title="Login" />
+
+                <item
+                    android:id="@+id/register"
+                    android:icon="@drawable/ic_register"
+                    android:title="Register" />
+
+
+            </menu>
+
+        </item>
+
+
+    </group>
+
+    <item android:title="Others">
+        <menu>
+
+            <item
+                android:id="@+id/contact"
+                android:icon="@drawable/ic_contact"
+                android:title="Contact with us" />
+
+            <item
+                android:id="@+id/share"
+                android:icon="@drawable/ic_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/exit"
+                android:icon="@drawable/ic_exit"
+                android:title="Exit" />
+
+        </menu>
+    </item>
+
+</menu>

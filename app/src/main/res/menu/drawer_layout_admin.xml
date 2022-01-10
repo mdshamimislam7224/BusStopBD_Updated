@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:tooltipText="@string/bottom_sheet_behavior"
+            android:id="@+id/addbus_admin"
+            android:icon="@drawable/ic_allbus"
+            android:title="Add Your Bus Information" />
+
+        <item
+            android:tooltipText="@string/bottom_sheet_behavior"
+            android:id="@+id/addbus_stoppage_admin"
+            android:icon="@drawable/ic_allbus"
+            android:title="Add Your Bus Stoppage" />
+
+        <item
+            android:id="@+id/allbus_admin"
+            android:icon="@drawable/ic_allbus"
+            android:title="Show My Bus" />
+
+
+        <item
+            android:id="@+id/admin_update_bus"
+            android:icon="@drawable/ic_allbus"
+            android:title="Update Bus Information" />
+
+
+        <item
+            android:id="@+id/admin_remove_bus"
+            android:icon="@drawable/ic_allbus"
+            android:title="Remove The Bus" />
+
+        <item android:title="service">
+            <menu>
+
+                <item
+                    android:id="@+id/ticket_information_admin"
+                    android:icon="@drawable/ic_ticket_icon"
+                    android:title=" Add Ticket Information" />
+
+
+
+            </menu>
+
+        </item>
+
+
+    </group>
+
+    <item android:title="Others">
+        <menu>
+
+            <item
+                android:id="@+id/contact_admin_with_sub_admin"
+                android:icon="@drawable/ic_contact"
+                android:title="Contact with SUB Admin" />
+
+            <item
+                android:id="@+id/logout_admin"
+                android:icon="@drawable/ic_logout"
+                android:title="Logout" />
+            <item
+                android:id="@+id/exit_admin"
+                android:icon="@drawable/ic_exit"
+                android:title="Exit" />
+
+        </menu>
+    </item>
+
+</menu>
