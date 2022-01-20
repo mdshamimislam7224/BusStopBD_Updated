@@ -19,16 +19,22 @@
         <entry key="..\:/Bus Stop BD/app/src/main/res/drawable/ic_location_for_flashing.xml" value="0.12037037037037036" />
         <entry key="..\:/Bus Stop BD/app/src/main/res/drawable/internet_connection_signal.xml" value="0.12777777777777777" />
         <entry key="..\:/Bus Stop BD/app/src/main/res/layout/activity_history_view_.xml" value="0.1921875" />
+        <entry key="..\:/Bus Stop BD/app/src/main/res/layout/all_bus_drawerlayout.xml" value="0.15" />
         <entry key="..\:/Bus Stop BD/app/src/main/res/layout/changer_fragment.xml" value="0.1" />
         <entry key="..\:/Bus Stop BD/app/src/main/res/layout/customer__maps_activity.xml" value="0.2" />
         <entry key="..\:/Bus Stop BD/app/src/main/res/layout/driver_maps_activity.xml" value="0.1" />
         <entry key="..\:/Bus Stop BD/app/src/main/res/layout/home.xml" value="0.1" />
         <entry key="..\:/Bus Stop BD/app/src/main/res/layout/internet_check_layout.xml" value="0.1921875" />
+        <entry key="..\:/Bus Stop BD/app/src/main/res/layout/item_history_customer_drawerlayout.xml" value="0.1921875" />
         <entry key="..\:/Bus Stop BD/app/src/main/res/layout/item_nearby_place_search.xml" value="0.1921875" />
         <entry key="..\:/Bus Stop BD/app/src/main/res/layout/login_activity.xml" value="0.16259057971014493" />
         <entry key="..\:/Bus Stop BD/app/src/main/res/layout/login_drawerlayout.xml" value="0.1921875" />
         <entry key="..\:/Bus Stop BD/app/src/main/res/layout/register_drawerlayout.xml" value="0.18020833333333333" />
         <entry key="..\:/Bus Stop BD/app/src/main/res/layout/setting_drawerlayout.xml" value="0.1921875" />
+        <entry key="..\:/Bus Stop BD/app/src/main/res/layout/single_layout_all_bus.xml" value="0.18020833333333333" />
+        <entry key="..\:/Bus Stop BD/app/src/main/res/layout/toolbar.xml" value="0.1921875" />
+        <entry key="..\:/Bus Stop BD/app/src/main/res/layout/traveling_history_layout.xml" value="0.1921875" />
+        <entry key="..\:/Bus Stop BD/app/src/main/res/menu/drawer_layout_customer.xml" value="0.18020833333333333" />
         <entry key="..\:/Bus Stop BD/app/src/main/res/menu/drawer_layout_home.xml" value="0.18020833333333333" />
       </map>
     </option>

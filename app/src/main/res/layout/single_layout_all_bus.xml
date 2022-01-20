@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="30dp"
+    android:padding="10dp"
+    android:elevation="4dp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/flashing_background"
+        android:padding="16dp">
+
+
+        <ImageView
+            android:id="@+id/show_all_bus_fragment_image"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="40dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/bus_name_all_bus_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:layout_toRightOf="@+id/show_all_bus_fragment_image"
+            android:text="Dhakar Chaka"
+            android:textColor="@color/Red"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/start_From_bus_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:layout_toRightOf="@+id/show_all_bus_fragment_image"
+            android:text="This is Header Text"
+            android:textColor="#000"
+            android:textSize="30dp"
+            android:layout_below="@id/bus_name_all_bus_info"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/to"
+            android:text="To"
+            android:gravity="center"
+            android:textColor="@color/White"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:layout_toRightOf="@+id/show_all_bus_fragment_image"
+            android:layout_below="@+id/start_From_bus_info"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/end_From_bus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/to"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/show_all_bus_fragment_image"
+            android:gravity="center"
+            android:text="This is Description Text"
+            android:textColor="#000"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

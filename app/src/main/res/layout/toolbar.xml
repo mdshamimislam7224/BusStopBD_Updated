@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
     android:id="@+id/test23">
 
     <LinearLayout
@@ -15,9 +16,9 @@
         <ImageView
             android:id="@+id/arraw_back_image"
             android:layout_width="100dp"
-            android:layout_marginTop="10dp"
-            android:layout_height="30dp"
-            android:src="@drawable/arrow_back"
+            android:layout_marginTop="8dp"
+            android:layout_height="60dp"
+            android:src="@drawable/btn_bak_arraw_toolbar"
             android:layout_alignParentLeft="true"/>
         <TextView
             android:id="@+id/toolbar_text_id"
@@ -39,10 +40,10 @@
     </LinearLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="5dp"
         android:background="@color/Red"
         android:layout_below="@id/lineartool"
-        android:padding="8dp"
+        android:padding="20dp"
         android:paddingLeft="8dp"/>
 
 </RelativeLayout>

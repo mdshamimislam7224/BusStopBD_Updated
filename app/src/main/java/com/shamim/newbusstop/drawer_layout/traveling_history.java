@@ -53,7 +53,7 @@ public class traveling_history extends Fragment implements View.OnClickListener 
         toolbar_text_id= view.findViewById(R.id.toolbar_text_id);
         arraw_back_image= view.findViewById(R.id.arraw_back_image);
 
-       toolbar_text_id.setText("Traveling History");
+       toolbar_text_id.setText("Travel For Information All Bus");
 
         mHistoryRecyclerView = (RecyclerView) view.findViewById(R.id.historyRecyclerView);
         mHistoryRecyclerView.setNestedScrollingEnabled(false);

@@ -1,4 +1,5 @@
 package com.shamim.newbusstop;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -17,12 +18,11 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.IntentSender;
 import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.net.ConnectivityManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,11 +34,17 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -47,6 +53,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
@@ -60,7 +68,6 @@ import com.shamim.newbusstop.drawer_layout.login;
 import com.shamim.newbusstop.drawer_layout.register;
 import com.shamim.newbusstop.drawer_layout.setting;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Locale;
 
@@ -73,6 +80,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     private GoogleApiClient googleApiClient;
     private LocationRequest locationRequest;
     private Location lastLocation;
+    private SupportMapFragment mapFragment;
     private Spinner Spinner_Nearby_Place;
     private Near_Place_Search_Adapter nearby_place_search_adapter;
     private Marker CurrentUserLocationMarker;
@@ -87,6 +95,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     private LinearLayout spinnerLinearLayout_with_button;
+    private Boolean checkerGps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,11 +110,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         connection = new Network_Change_Listener();
         search = findViewById(R.id.search);
-        Spinner_Nearby_Place=findViewById(R.id.spinner_Nearby_Place);
-        spinnerLinearLayout_with_button=findViewById(R.id.spinnerLinearLayout_with_button);
-        bt_Find_NearBy_Place=findViewById(R.id.bt_Find_NearBy_Place);
-       // view= findViewById(R.id.view);
-        map= findViewById(R.id.map);
+        Spinner_Nearby_Place = findViewById(R.id.spinner_Nearby_Place);
+        spinnerLinearLayout_with_button = findViewById(R.id.spinnerLinearLayout_with_button);
+        bt_Find_NearBy_Place = findViewById(R.id.bt_Find_NearBy_Place);
+        //view= findViewById(R.id.view);
+        map = findViewById(R.id.map);
 
         nearby_place_search_adapter = new Near_Place_Search_Adapter(Home.this, Data_NearBy_Place.getNearByPlace());
         Spinner_Nearby_Place.setAdapter(nearby_place_search_adapter);
@@ -118,21 +127,18 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         Boolean Admin_islogged = preferences.getBoolean("Admin_isLogged", false);
 
 
-        //Start--here use SharedPreferences  for user login
+
+        // Start--here use SharedPreferences  for user login
 
         if (User_isLogged) {
             Intent intent = new Intent(Home.this, Customer_MapsActivity.class);
             startActivity(intent);
             finish();
-        }
-        else if (Driver_islogged)
-        {
+        } else if (Driver_islogged) {
             Intent intent = new Intent(Home.this, Driver_maps_Activity.class);
             startActivity(intent);
             finish();
-        }
-        else if (Admin_islogged)
-        {
+        } else if (Admin_islogged) {
             Intent intent = new Intent(Home.this, Admin_Activity.class);
             startActivity(intent);
             finish();
@@ -140,14 +146,18 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         // End--  here use SharedPreferences  for user login
 
 
-
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             CheckUserLocationPermission();
         }
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+        CheckGps();
+
+         mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
+
+
 
 
 
@@ -167,7 +177,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         Log.d(TAG, "Navigation botton");
 
 
-
         Places.initialize(getApplicationContext(), "mykey", Locale.US);
         // Initialize the AutocompleteSupportFragment.
         AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
@@ -180,26 +189,24 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         // Set up a PlaceSelectionListener to handle the response.
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
-            public void onPlaceSelected(@NonNull com.google.android.libraries.places.api.model.Place place)
-            {
+            public void onPlaceSelected(@NonNull com.google.android.libraries.places.api.model.Place place) {
                 destination = place.getName().toString();
                 destinationLatLng = place.getLatLng();
             }
 
             @Override
             public void onError(@NonNull Status status) {
-                Log.d(TAG,"Place Search Error:=="+status.getStatusMessage());
+                Log.d(TAG, "Place Search Error:==" + status.getStatusMessage());
 
             }
-        } );
+        });
 
 
         // Start Near By Search Place
         bt_Find_NearBy_Place.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String hospital = "hospital", school = "school", restaurant = "restaurant"
-                        ,mosque="mosque",atm="atm",gas="gas";
+                String hospital = "hospital", school = "school", restaurant = "restaurant", mosque = "mosque", atm = "atm", gas = "gas";
                 Object transferData[] = new Object[2];
                 GetNearby_Place getNearby_place = new GetNearby_Place();
 
@@ -209,63 +216,43 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
                 if (i == 0) {
                     Toast.makeText(Home.this, "Select the Option", Toast.LENGTH_SHORT).show();
-                      }
-                else if (i==1)
-                {
-                    String urlmosque=getUrl( latitude,longitude,mosque);
-                    transferData[0]=mMap;
-                    transferData[1]=urlmosque;
+                } else if (i == 1) {
+                    String urlmosque = getUrl(latitude, longitude, mosque);
+                    transferData[0] = mMap;
+                    transferData[1] = urlmosque;
                     getNearby_place.execute(transferData);
                     Toast.makeText(Home.this, "Searching Nearby Mosque...", Toast.LENGTH_SHORT).show();
-                }
-
-                else if (i==2)
-                {
-                    String urlhospital=getUrl( latitude,longitude,hospital);
-                    transferData[0]=mMap;
-                    transferData[1]=urlhospital;
+                } else if (i == 2) {
+                    String urlhospital = getUrl(latitude, longitude, hospital);
+                    transferData[0] = mMap;
+                    transferData[1] = urlhospital;
                     getNearby_place.execute(transferData);
                     Toast.makeText(Home.this, "Searching Nearby Hospital...", Toast.LENGTH_SHORT).show();
-                }
-
-                else if (i==3)
-                {
-                    String urlatm=getUrl( latitude,longitude,atm);
-                    transferData[0]=mMap;
-                    transferData[1]=urlatm;
+                } else if (i == 3) {
+                    String urlatm = getUrl(latitude, longitude, atm);
+                    transferData[0] = mMap;
+                    transferData[1] = urlatm;
                     getNearby_place.execute(transferData);
                     Toast.makeText(Home.this, "Searching Nearby ATM BOOTH...", Toast.LENGTH_SHORT).show();
-                }
-
-                else if (i==4)
-                {
-                    String urlgas=getUrl( latitude,longitude,gas);
-                    transferData[0]=mMap;
-                    transferData[1]=urlgas;
+                } else if (i == 4) {
+                    String urlgas = getUrl(latitude, longitude, gas);
+                    transferData[0] = mMap;
+                    transferData[1] = urlgas;
                     getNearby_place.execute(transferData);
                     Toast.makeText(Home.this, "Searching Nearby Gas Station...", Toast.LENGTH_SHORT).show();
-                }
-
-                else if (i==5)
-                {
-                    String urlrestaurant=getUrl( latitude,longitude,restaurant);
-                    transferData[0]=mMap;
-                    transferData[1]=urlrestaurant;
+                } else if (i == 5) {
+                    String urlrestaurant = getUrl(latitude, longitude, restaurant);
+                    transferData[0] = mMap;
+                    transferData[1] = urlrestaurant;
                     getNearby_place.execute(transferData);
                     Toast.makeText(Home.this, "Searching Nearby Restaurant...", Toast.LENGTH_SHORT).show();
-                }
-
-                else if (i==6)
-                {
-                    String urlschool=getUrl( latitude,longitude,school);
-                    transferData[0]=mMap;
-                    transferData[1]=urlschool;
+                } else if (i == 6) {
+                    String urlschool = getUrl(latitude, longitude, school);
+                    transferData[0] = mMap;
+                    transferData[1] = urlschool;
                     getNearby_place.execute(transferData);
                     Toast.makeText(Home.this, "Searching Nearby School...", Toast.LENGTH_SHORT).show();
-                }
-                else
-
-                {
+                } else {
                     Toast.makeText(Home.this, "Invalid Search", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -298,7 +285,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 break;
 
             case R.id.allbus:
-                Intent showallbus = new Intent(Home.this, Show_All_Busses_Recycler_View .class);
+                Intent showallbus = new Intent(Home.this, Show_All_Busses_Recycler_View.class);
                 startActivity(showallbus);
                 break;
             case R.id.setting:
@@ -311,7 +298,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 search.setVisibility(View.GONE);
                 map.setVisibility(View.GONE);
                 spinnerLinearLayout_with_button.setVisibility(View.GONE);
-               // map_search_Nearbybtn_Hide.setVisibility(View.GONE);
+                // map_search_Nearbybtn_Hide.setVisibility(View.GONE);
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 login loginFragment = new login();
@@ -319,8 +306,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 transaction.addToBackStack(null);
                 transaction.commit();
                 //transaction.remove(loginFragment);
-
-
 
 
                 break;
@@ -349,12 +334,12 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             case R.id.share:
                 Intent sharingInent = new Intent(Intent.ACTION_SEND);
                 sharingInent.setType("text/plain");
-                String shareBody="https://mdshamimislam487.blogspot.com/";
-                String shareSubject="Your Subject here";
+                String shareBody = "https://mdshamimislam487.blogspot.com/";
+                String shareSubject = "Your Subject here";
 
-                sharingInent.putExtra(Intent.EXTRA_TEXT,shareBody);
-                sharingInent.putExtra(Intent.EXTRA_SUBJECT,shareSubject);
-                startActivity(Intent.createChooser(sharingInent,"Share Using"));
+                sharingInent.putExtra(Intent.EXTRA_TEXT, shareBody);
+                sharingInent.putExtra(Intent.EXTRA_SUBJECT, shareSubject);
+                startActivity(Intent.createChooser(sharingInent, "Share Using"));
                 break;
 
         }
@@ -412,8 +397,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         markerOptions.title("User Current Location");
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
         CurrentUserLocationMarker = mMap.addMarker(markerOptions);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomBy(12));
+        /*mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        mMap.animateCamera(CameraUpdateFactory.zoomBy(12));*/
+        CameraUpdate cameraUpdate =CameraUpdateFactory.newLatLngZoom(latLng,15);
+        mMap.animateCamera(cameraUpdate);
         if (googleApiClient != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
 
@@ -426,10 +413,82 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            buildGoogleApiClient();
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-            mMap.setMyLocationEnabled(true);
+            ActivityCompat.requestPermissions(Home.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, Location_Request_code);
+        }
+        buildGoogleApiClient();
+
+        //mMap.setMyLocationEnabled(true);
+
+        mMap.getUiSettings().setMyLocationButtonEnabled(true);
+        mMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+            @Override
+            public boolean onMyLocationButtonClick() {
+                CheckGps();
+                return true;
+            }
+        });
+
+
+    }
+
+    private void CheckGps() {
+        locationRequest = LocationRequest.create();
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        locationRequest.setInterval(5000);
+        locationRequest.setFastestInterval(3000);
+
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(locationRequest)
+                .setAlwaysShow(true);
+
+        Task<LocationSettingsResponse> locationSettingsResponseTask = LocationServices.getSettingsClient(getApplicationContext())
+                .checkLocationSettings(builder.build());
+
+        locationSettingsResponseTask.addOnCompleteListener(new OnCompleteListener<LocationSettingsResponse>() {
+            @Override
+            public void onComplete(@NonNull Task<LocationSettingsResponse> task) {
+
+                try {
+                    LocationSettingsResponse response = task.getResult(ApiException.class);
+                    Toast.makeText(Home.this, "Gps is already On", Toast.LENGTH_SHORT).show();
+
+                } catch (ApiException e) {
+                    if (e.getStatusCode() == LocationSettingsStatusCodes.RESOLUTION_REQUIRED) {
+                        ResolvableApiException resolvableApiException = (ResolvableApiException) e;
+                        try {
+                            resolvableApiException.startResolutionForResult(Home.this, 101);
+                        } catch (IntentSender.SendIntentException sendIntentException) {
+                            sendIntentException.printStackTrace();
+                        }
+                    }
+
+                    if (e.getStatusCode() == LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE) {
+                        Toast.makeText(Home.this, "Setting not available", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101) {
+            if (resultCode == RESULT_OK) {
+                Toast.makeText(Home.this, "Now Gps is On", Toast.LENGTH_SHORT).show();
+
+
+
+            }
+            if (resultCode==RESULT_CANCELED)
+            {
+                Toast.makeText(Home.this, "Denied Gps On", Toast.LENGTH_SHORT).show();
+                finish();
+            }
         }
     }
 
@@ -451,6 +510,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     }
 
+    final int Location_Request_code = 1;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -467,7 +527,18 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 } else {
                     Toast.makeText(this, "Permission Denied.....", Toast.LENGTH_SHORT).show();
                 }
-                return;
+               break;
+                case Location_Request_code:
+                {
+                    if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                        mapFragment.getMapAsync(this);
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Please provide the permission", Toast.LENGTH_LONG).show();
+                    }
+                    break;
+                }
+
         }
     }
 
@@ -544,11 +615,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     @Override
     protected void onResume() {
-
-        search.setVisibility(View.VISIBLE);
-        map.setVisibility(View.VISIBLE);
         super.onResume();
+        CheckGps();
     }
+
 
 
 

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -30,8 +31,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.firebase.geofire.GeoFire;
@@ -39,11 +38,16 @@ import com.firebase.geofire.GeoLocation;
 import com.firebase.geofire.GeoQuery;
 import com.firebase.geofire.GeoQueryEventListener;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -52,6 +56,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
@@ -67,10 +73,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.shamim.newbusstop.Internet_Connection.Network_Change_Listener;
 import com.shamim.newbusstop.drawer_layout.Contact_customer;
 import com.shamim.newbusstop.drawer_layout.all_bus;
-import com.shamim.newbusstop.drawer_layout.contact;
 import com.shamim.newbusstop.drawer_layout.customer_profile;
-import com.shamim.newbusstop.drawer_layout.register;
-import com.shamim.newbusstop.drawer_layout.setting;
 import com.shamim.newbusstop.drawer_layout.traveling_history;
 
 import java.util.Arrays;
@@ -89,10 +92,13 @@ public class Customer_MapsActivity extends AppCompatActivity implements Navigati
 
     private Button mLogout, mRequest, mSettings, mHistory;
     private DrawerLayout drawer_layout_customer;
+    private Marker current_passenger_Marker;
+
 
     private LatLng pickupLocation;
 
     private Boolean requestBol = false;
+    private Boolean request_Gps;
 
     private Marker pickupMarker;
 
@@ -132,6 +138,8 @@ public class Customer_MapsActivity extends AppCompatActivity implements Navigati
         } else {
             mapFragment.getMapAsync(this);
         }
+
+        CheckGps();
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -248,7 +256,7 @@ public class Customer_MapsActivity extends AppCompatActivity implements Navigati
                 break;
 
             case R.id.allbus_customer:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_Container,
+                getSupportFragmentManager().beginTransaction().replace(R.id.test33,
                         new all_bus()).commit();
                 break;
             case R.id.setting_customer:
@@ -598,6 +606,57 @@ public class Customer_MapsActivity extends AppCompatActivity implements Navigati
         buildGoogleApiClient();
 
         mMap.setMyLocationEnabled(true);
+
+        mMap.getUiSettings().setMyLocationButtonEnabled(true);
+        mMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+            @Override
+            public boolean onMyLocationButtonClick() {
+                CheckGps();
+                return true;
+            }
+        });
+    }
+
+    private void CheckGps()
+    {
+        mLocationRequest = LocationRequest.create();
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setInterval(5000);
+        mLocationRequest.setFastestInterval(3000);
+
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(mLocationRequest)
+                .setAlwaysShow(true);
+
+        Task<LocationSettingsResponse> locationSettingsResponseTask = LocationServices.getSettingsClient(getApplicationContext())
+                .checkLocationSettings(builder.build());
+
+        locationSettingsResponseTask.addOnCompleteListener(new OnCompleteListener<LocationSettingsResponse>() {
+            @Override
+            public void onComplete(@NonNull Task<LocationSettingsResponse> task) {
+
+                try {
+                    LocationSettingsResponse response = task.getResult(ApiException.class);
+                    Toast.makeText(Customer_MapsActivity.this, "Gps is already On", Toast.LENGTH_SHORT).show();
+
+                } catch (ApiException e) {
+                    if (e.getStatusCode() == LocationSettingsStatusCodes.RESOLUTION_REQUIRED) {
+                        ResolvableApiException resolvableApiException = (ResolvableApiException) e;
+                        try {
+                            resolvableApiException.startResolutionForResult(Customer_MapsActivity.this, 101);
+                        } catch (IntentSender.SendIntentException sendIntentException) {
+                            sendIntentException.printStackTrace();
+                        }
+                    }
+
+                    if (e.getStatusCode() == LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE) {
+                        Toast.makeText(Customer_MapsActivity.this, "Setting not available", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            }
+        });
+
     }
 
     protected synchronized void buildGoogleApiClient() {
@@ -612,8 +671,16 @@ public class Customer_MapsActivity extends AppCompatActivity implements Navigati
     @Override
     public void onLocationChanged(@NonNull Location location) {
         mLastLocation = location;
-
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+
+
+        if (current_passenger_Marker != null) {
+            current_passenger_Marker.remove();
+        }
+        MarkerOptions markerOptions = new MarkerOptions();
+
+        current_passenger_Marker = mMap.addMarker(new MarkerOptions().position(latLng).title("Your Current Location").icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_pickup)));
+
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
 
@@ -660,16 +727,39 @@ public class Customer_MapsActivity extends AppCompatActivity implements Navigati
 
         switch (requestCode) {
             case Location_Request_code: {
+
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
                     mapFragment.getMapAsync(this);
 
                 } else {
                     Toast.makeText(getApplicationContext(), "Please provide the permission", Toast.LENGTH_LONG).show();
                 }
                 break;
+
+
+            }
+
+
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101) {
+            if (resultCode == RESULT_OK) {
+                Toast.makeText(Customer_MapsActivity.this, "Now Gps is On", Toast.LENGTH_SHORT).show();
+
+
+            }
+            if (resultCode==RESULT_CANCELED)
+            {
+                Toast.makeText(Customer_MapsActivity.this, "Denied Gps On", Toast.LENGTH_SHORT).show();
+                finish();
             }
         }
     }
+
 
 
 
@@ -718,6 +808,13 @@ public class Customer_MapsActivity extends AppCompatActivity implements Navigati
         registerReceiver(connection,filter);
         super.onStart();
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        CheckGps();
+    }
+
+
 
     @Override
     protected void onStop() {
